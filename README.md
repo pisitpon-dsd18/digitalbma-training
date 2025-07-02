@@ -20,6 +20,11 @@ bma_greenarea: พื้นที่สีเขียวของกรุง�
 - แผนที่แสดงตำแหน่งทั่วไปของกรุงเทพมหานคร: https://bmagis.bangkok.go.th/portal/apps/webappviewer/index.html?id=5cc64a56502e49c79138f7938e77b7a2
 - API GIS Services: https://cpudgiapp.bangkok.go.th/arcgis/rest/services
 
+# AQI API สำหรับตัวอย่างเรียกมาแสดงบนแผนที่
+<img width="768" alt="Screenshot 2568-07-02 at 08 49 28" src="https://github.com/user-attachments/assets/5d4f2250-d326-4684-ba73-ca973155fafe" />
+
+- เว็บหลัก http://air4thai.pcd.go.th/webV3/#/Home
+- API http://air4thai.com/forweb/getAQI_JSON.php
 
 # Note
 - https://cpudgiapp.bangkok.go.th/bma-gi/gis-service/home
