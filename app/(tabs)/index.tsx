@@ -1,5 +1,5 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, Text } from 'react-native';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
@@ -17,7 +17,8 @@ export default function HomeScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome! James eiei</ThemedText>
+    
+       <Text className='text-red-500 text-4xl' >ทดสอบ Tailwind</Text>
         <HelloWave />
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
