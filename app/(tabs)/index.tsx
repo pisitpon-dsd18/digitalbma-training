@@ -1,76 +1,40 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet, Text } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { FontAwesome } from '@expo/vector-icons';
+import React from 'react';
+import { ActivityIndicator, Text, View } from 'react-native';
+import { useAuth } from '../_layout';
 
 export default function HomeScreen() {
+  const { session, loading } = useAuth();
+  
+  if (loading) {
+    return (
+      <View className="items-center justify-center flex-1 bg-gray-50 dark:bg-gray-900">
+        <ActivityIndicator size="large" color="#3b82f6" />
+      </View>
+    );
+  }
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-    
-       <Text className='text-red-500 text-4xl' >ทดสอบ Tailwind</Text>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View className="items-center justify-center flex-1 p-6 bg-gray-50 dark:bg-gray-900">
+      <FontAwesome name="home" size={60} color="#3b82f6" />
+      <Text className="mt-6 text-3xl font-bold text-gray-800 dark:text-gray-100">
+        หน้าหลัก
+      </Text>
+      <Text className="mt-4 text-lg text-center text-gray-600 dark:text-gray-300">
+        ยินดีต้อนรับ,
+      </Text>
+      <Text className="mt-1 text-2xl font-semibold text-center text-blue-600 dark:text-blue-400">
+        {session?.user?.user_metadata?.display_name || session?.user?.email}
+      </Text>
+
+      <View className="p-4 mt-8 bg-white border border-gray-200 rounded-lg dark:border-gray-700 dark:bg-gray-800">
+        <Text className="text-base text-gray-700 dark:text-gray-300">
+          <Text className="font-bold">อีเมล:</Text> {session?.user?.email}
+        </Text>
+        <Text className="mt-2 text-base text-gray-700 dark:text-gray-300">
+          <Text className="font-bold">เบอร์โทร:</Text> {session?.user?.user_metadata?.phone || 'ไม่มีข้อมูล'}
+        </Text>
+      </View>
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});

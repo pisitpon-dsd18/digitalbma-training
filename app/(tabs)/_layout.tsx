@@ -1,10 +1,8 @@
-import { Tabs } from 'expo-router';
+import { FontAwesome } from '@expo/vector-icons';
+import { Link, Tabs } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 
@@ -15,29 +13,55 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
+        headerShown: true, // Show header to place the profile button
+        tabBarStyle: {
+            backgroundColor: colorScheme === 'dark' ? '#111827' : '#ffffff',
+            borderTopColor: colorScheme === 'dark' ? '#374151' : '#e5e7eb',
+        },
+        headerStyle: {
+            backgroundColor: colorScheme === 'dark' ? '#111827' : '#ffffff',
+        },
+        headerTintColor: Colors[colorScheme ?? 'light'].text,
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="home" size={28} color={color} />
+          ),
+          headerRight: () => (
+            <Link href="/user" asChild>
+              <TouchableOpacity className="mr-4">
+                <FontAwesome 
+                  name="user-circle" 
+                  size={25} 
+                  color={Colors[colorScheme ?? 'light'].text}
+                />
+              </TouchableOpacity>
+            </Link>
+          ),
         }}
       />
       <Tabs.Screen
         name="explore"
         options={{
           title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="compass" size={28} color={color} />
+          ),
+           headerRight: () => (
+            <Link href="/user" asChild>
+              <TouchableOpacity className="mr-4">
+                <FontAwesome 
+                  name="user-circle" 
+                  size={25} 
+                  color={Colors[colorScheme ?? 'light'].text}
+                />
+              </TouchableOpacity>
+            </Link>
+          ),
         }}
       />
     </Tabs>
