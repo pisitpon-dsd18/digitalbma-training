@@ -1,14 +1,15 @@
-import { FontAwesome } from '@expo/vector-icons';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 
+import MapScreen from '@/components/MapScreen';
+import React from 'react';
+import { StyleSheet } from 'react-native';
 export default function ExploreScreen() {
   return (
-    <View style={styles.container}>
-      <FontAwesome name="compass" size={60} color="#10b981" />
-      <Text style={styles.title}>Explore</Text>
-      <Text style={styles.subtitle}>ค้นหาสิ่งใหม่ๆ ได้ที่นี่</Text>
-    </View>
+    // <View style={styles.container}>
+    //   <FontAwesome name="compass" size={60} color="#10b981" />
+    //   <Text style={styles.title}>Explore</Text>
+    //   <Text style={styles.subtitle}>ค้นหาสิ่งใหม่ๆ ได้ที่นี่ 1234</Text>
+    // </View>
+    <MapScreen />
   );
 }
 
